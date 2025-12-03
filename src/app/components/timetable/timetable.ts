@@ -108,6 +108,14 @@ export class Timetable {
           title: 'Event6',
           day: '2025-12-04',
         },
+        {
+          id: 7,
+          venue: 'Venue2',
+          start: '12:15',
+          end: '13:30',
+          title: 'Event7',
+          day: '2025-12-01',
+        },
       ];
       this.saveEvents();
     }
