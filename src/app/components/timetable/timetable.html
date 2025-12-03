@@ -1,0 +1,56 @@
+<div
+  class="w-full h-screen p-4 overflow-hidden flex flex-col gap-4 bg-gray-100"
+>
+  <!-- Scrollable Day Tabs -->
+  <div class="flex gap-2 p-2 overflow-x-auto border-b bg-white shadow">
+    <div
+      *ngFor="let d of days"
+      (click)="selectDay(d.date)"
+      [class.bg-gray-300]="d.date === selectedDay"
+      class="min-w-[140px] px-4 py-2 rounded cursor-pointer whitespace-nowrap shadow"
+    >
+      <div class="font-semibold text-center">{{ d.label }}</div>
+      <div class="text-xs text-center">{{ d.date }}</div>
+    </div>
+  </div>
+
+  <!-- Body: time + venues -->
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Time Column -->
+    <div class="mt-8 w-20 overflow-y-auto border-r bg-white sticky left-0 z-10">
+      <div
+        *ngFor="let t of timeSlots"
+        class="flex items-start text-xs p-1 border-b text-center justify-center"
+        [style.height.px]="slotHeight"
+      >
+        {{ t }}
+      </div>
+    </div>
+
+    <!-- Main Scroll -->
+    <div class="flex-1 overflow-auto relative">
+      <!-- Venue Headers -->
+      <div class="flex sticky top-0 bg-white z-10 shadow">
+        <div
+          *ngFor="let v of venues"
+          class="min-w-[250px] border-r p-2 font-semibold text-center bg-white"
+        >
+          {{ v }}
+        </div>
+      </div>
+
+      <!-- Grid + Events -->
+      <div class="relative">
+        <!-- Event Cards -->
+        <div
+          *ngFor="let e of filteredEvents"
+          class="absolute bg-gray-200 border border-gray-300 rounded shadow px-2 py-1 text-xs flex flex-col justify-center text-center items-center"
+          [ngStyle]="computeStyle(e)"
+        >
+          <div>{{ e.start }}–{{ e.end }}</div>
+          <div class="font-semibold">{{ e.title }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
