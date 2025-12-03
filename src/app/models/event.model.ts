@@ -1,8 +1,10 @@
 export interface EventItem {
-id: string;
-title: string;
-venueId: string;
-start: string; 
-end: string;
-color?: string;
+  id: number;
+  venue: string;
+  start: string;
+  end: string;
+  title: string;
+  day: string;
+  top?: number;
+  height?: number;
 }
